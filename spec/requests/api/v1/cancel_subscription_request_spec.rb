@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Create Subscription Request' do
-  it 'can  customer subscription' do
+RSpec.describe 'Cancel Subscription Request' do
+  it 'can cancel a customer subscription' do
     customer_1 = Customer.create!(first_name: "Kerri", last_name: "Hoffmann", email: "kerri@yahoo.com", address: "123 Main St, Denver, CO 80210")
     tea_1 = Tea.create!(name: "Starry Night", description: "Night time tea", temperature: 90, brew_time: 5, price: 3.50)
     tea_2 = Tea.create!(name: "Wakey Wakey", description: "Green tea", temperature: 90, brew_time: 5, price: 3.50)
@@ -10,13 +10,15 @@ RSpec.describe 'Create Subscription Request' do
 
     patch "/api/v1/customers/#{customer_1.id}/subscriptions/#{subscription_1.id}", params: subscription_1, as: :json
 
-    updated_subscription = (Subscription.find(subscription_1.id))
-    updated_subscription[:status].to eq("cancelled")
+    updated_subscription = Subscription.find(subscription_1.id)
+    active_subscription = Subscription.find(subscription_2.id)
+    expect(updated_subscription[:status]).to eq("cancelled")
+    expect(active_subscription[:status]).to eq("active")
 
     parsed_response = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
 
     expect(parsed_response).to be_a(Hash)
     expect(parsed_response[:data][:type]).to eq("subscriptions")
