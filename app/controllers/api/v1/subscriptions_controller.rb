@@ -3,6 +3,8 @@ class Api::V1::SubscriptionsController < ApplicationController
     subscription = Subscription.create(subscription_params)
     if subscription.save
       render json: SubscriptionSerializer.subscription_json(subscription), status: 201
+    else
+      render json: { errors: subscription.errors.full_messages }, status: 400
     end
   end
 
