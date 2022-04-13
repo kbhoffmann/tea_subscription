@@ -29,5 +29,6 @@ RSpec.describe 'Cancel Subscription Request' do
     expect(parsed_response[:data][:attributes][:status]).to eq("cancelled")
     expect(parsed_response[:data][:attributes][:frequency]).to eq(4)
     expect(parsed_response[:data][:attributes][:box_quantity]).to eq(1)
+    expect(parsed_response[:data][:attributes][:title]).to_not eq("Wakey Wakey")
   end
 end
