@@ -10,4 +10,6 @@ RSpec.describe Subscription, type: :model do
   it { should validate_presence_of :status }
   it { should validate_presence_of :frequency }
   it { should validate_presence_of :box_quantity }
+  it { should validate_numericality_of(:box_quantity).is_greater_than_or_equal_to(1) }
+  it { should validate_numericality_of(:frequency).is_greater_than_or_equal_to(1) }
 end
