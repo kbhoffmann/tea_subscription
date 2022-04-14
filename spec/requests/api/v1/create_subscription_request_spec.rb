@@ -10,8 +10,7 @@ RSpec.describe 'Create Subscription Request' do
 
     subscription_1 = {
                         "tea_id": "#{tea_1.id}",
-                        "customer_id": "#{customer_1.id}",
-                        "title": "#{tea_1.name}",
+                        "title": "New Subscription",
                         "frequency": "4",
                         "box_quantity": "1",
                       }
@@ -30,7 +29,7 @@ RSpec.describe 'Create Subscription Request' do
     expect(parsed_response[:data]).to have_key(:id)
     expect(parsed_response[:data][:attributes][:customer_id]).to eq(customer_1.id)
     expect(parsed_response[:data][:attributes][:tea_id]).to eq(tea_1.id)
-    expect(parsed_response[:data][:attributes][:title]).to eq("Starry Night")
+    expect(parsed_response[:data][:attributes][:title]).to eq("New Subscription")
     expect(parsed_response[:data][:attributes][:status]).to eq("active")
     expect(parsed_response[:data][:attributes][:frequency]).to eq(4)
     expect(parsed_response[:data][:attributes][:box_quantity]).to eq(1)
@@ -43,8 +42,7 @@ RSpec.describe 'Create Subscription Request' do
 
     subscription_1 = {
                         "tea_id": "#{tea_1.id}",
-                        "customer_id": "#{customer_1.id}",
-                        "title": "#{tea_1.name}",
+                        "title": "New Subscription",
                         "frequency": "4",
                         "box_quantity": "0",
                       }
