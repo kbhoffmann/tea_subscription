@@ -12,7 +12,6 @@ RSpec.describe 'Create Subscription Request' do
                         "tea_id": "#{tea_1.id}",
                         "customer_id": "#{customer_1.id}",
                         "title": "#{tea_1.name}",
-                        "status": "active",
                         "frequency": "4",
                         "box_quantity": "1",
                       }
@@ -46,7 +45,6 @@ RSpec.describe 'Create Subscription Request' do
                         "tea_id": "#{tea_1.id}",
                         "customer_id": "#{customer_1.id}",
                         "title": "#{tea_1.name}",
-                        "status": "active",
                         "frequency": "4",
                         "box_quantity": "0",
                       }
